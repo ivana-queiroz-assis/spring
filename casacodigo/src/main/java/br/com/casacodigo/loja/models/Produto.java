@@ -1,5 +1,7 @@
 package br.com.casacodigo.loja.models;
 
+import org.hibernate.annotations.Entity;
+
 @Entity
 public class Produto {
 
