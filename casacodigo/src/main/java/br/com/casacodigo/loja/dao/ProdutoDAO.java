@@ -3,9 +3,10 @@ package br.com.casacodigo.loja.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+import java.util.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import br.com.casacodigo.loja.models.Produto;
 
@@ -18,6 +19,10 @@ public class ProdutoDAO {
 	
 	public void gravar(Produto produto) {		
 		manager.persist(produto);
+	}
+
+	public List<Produto> listar() {
+		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 	}
 	
 }
