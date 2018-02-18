@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
  <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,7 +21,6 @@
 		<link href="${contextPath}resources/css/cssbase-min.css"
 			rel="stylesheet" type="text/css" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700'
-			rel='stylesheet'/>
 		<link href="${contextPath}resources/css/fonts.css"
 			rel="stylesheet" type="text/css" media="all" />
 		<link href="${contextPath}resources/css/fontello-ie7.css"
@@ -51,7 +51,10 @@
 				<nav id="main-nav">
 					
 					<ul class="clearfix">
-						<li><a href="/carrinho" rel="nofollow">Carrinho</a></li>
+						<li>
+						<a href="/carrinho" rel="nofollow">
+							Carrinho ${carrinhoCompras.quantidade}
+						</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 
@@ -85,21 +88,23 @@
 		  </header>	
 	  
 	  <section class="buy-options clearfix">  
-	  <form action="/carrinho/add" method="post" class="container">
-	    <ul id="variants" class="clearfix">
-	    <input type="hidden" value="${produto.id}" name="produtoId">
-	    	  <c:forEach items="${produtos.precos}" var="preco">
-		    	  <li class="buy-option">
-		            <input type="radio" name="tipoLivro" class="variant-radio" 
-		            id="tipo" value="${preco.tipo}" checked="checked"  />
-		            <label  class="variant-label">${preco.tipo} </label>
-		            <small class="compare-at-price">R$ 39,90</small>
-		            <p class="variant-price">${preco.valor}</p>
-		          </li>    
-		        </c:forEach>       
+	  
+	 <form action='<c:url value="/carrinho/add" />' method="post" class="container">
+   		 <ul id="variants" class="clearfix">
+	        <input type="hidden" name="produtoId" value="${produto.id}" />
+	        <c:forEach items="${produto.precos}" var="preco">
+	          <li class="buy-option">
+	            <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
+	            <label  class="variant-label">
+	              ${preco.tipo}
+	            </label>
+	            <small class="compare-at-price">R$ 39,90</small>
+	            <p class="variant-price">${preco.valor}</p>
+	          </li>
+	        </c:forEach>           
 	    </ul>
-	    <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora"${produto.titulo} title="Compre Agora"></button>
-	    	  </form>
+	    <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora${produto.titulo}">Compre aqui</button>
+	</form>
 	  
 	</section>
 	  
@@ -116,7 +121,9 @@
 	    <h2 class="section-title">Dados do livro:</h2>
 	    <p>Número de páginas: <span>${produto.paginas}</span></p>
 	    <p></p>
-	    <p>Data de publicação: ${produto.dataLancamento} </p>
+	    <p>Data de publicação:
+	    	<fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time}"/>
+	    </p>
 	    <p>Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a></p>
 	  </section>
 	</div>
@@ -125,9 +132,6 @@
 
 	<footer id="layout-footer">
 		<div class="clearfix container">
-
-
-
 
 			<div id="collections-footer">
 				<!-- cdc-footer -->
