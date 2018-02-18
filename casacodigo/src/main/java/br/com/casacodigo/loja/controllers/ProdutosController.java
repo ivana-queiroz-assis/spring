@@ -20,7 +20,7 @@ import br.com.casacodigo.loja.models.TipoPreco;
 import br.com.casacodigo.loja.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired

@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,22 +12,22 @@
 </head>
 <body>
 
-	<form action="/casacodigo/produtos" method="POST">
+	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="POST">		
 		<div>
 			<label>Título</label>
-			<form:errors path="produto.titulo"/>
+			<form:errors path="titulo"/>
 			
 			<input type="text" name="titulo">
 		</div>
 		<div>
 			<label>Descrição</label>
-			<form:errors path="produto.descricao"/>
+			<form:errors path="descricao"/>
 			<textarea rows="10" cols="20" name="descricao">
 			</textarea>
 		</div>
 		<div>
 			<label>Páginas</label>
-			<form:errors path="produto.paginas"/>
+			<form:errors path="paginas"/>
 			<input type="text" name="paginas">
 		</div>
 		
@@ -38,6 +40,6 @@
     	</c:forEach>
 		
 		<button type="submit">Cadastrar</button>
-	</form>
+	</form:form>
 </body>
 </html>

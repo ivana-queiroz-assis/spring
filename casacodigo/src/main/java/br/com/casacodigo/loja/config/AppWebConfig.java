@@ -26,7 +26,7 @@ public class AppWebConfig {
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("/WEB/message");
+		messageSource.setBasename("/WEB-INF/message");
 		messageSource.setDefaultEncoding("UTF-8");
 		messageSource.setCacheSeconds(1);
 		return messageSource;
