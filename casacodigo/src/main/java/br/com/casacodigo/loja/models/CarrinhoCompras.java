@@ -28,4 +28,14 @@ public class CarrinhoCompras {
 	public int getQuantidade() {
 		return itens.values().stream().reduce(0, (proximo,acumulador) -> proximo + acumulador);
 	}
+	
+	public int getTotal() {
+		return 0;
+	}
+	
+	public void remover(Integer produtoId, TipoPreco tipoPreco) {
+	    Produto produto = new Produto();
+	    produto.setId(produtoId);
+	    itens.remove(new CarrinhoItem(produto, tipoPreco));
+	}
 }

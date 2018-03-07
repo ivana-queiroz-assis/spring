@@ -30,7 +30,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+	<form action="${s:mvcUrl('PC#finalizar').build()}" method="post">
+    	<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+	</form>
+	<p> ${sucesso} </p>
 	
 </body>
 </html>
